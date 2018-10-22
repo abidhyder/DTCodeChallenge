@@ -1,0 +1,6 @@
+D:\Abid\Web.UI\Web.Business\bin\Debug\Web.Business.dll
+D:\Abid\Web.UI\Web.Business\bin\Debug\Web.Business.pdb
+D:\Abid\Web.UI\Web.Business\obj\Debug\Web.Business.csproj.CoreCompileInputs.cache
+D:\Abid\Web.UI\Web.Business\obj\Debug\Web.Business.dll
+D:\Abid\Web.UI\Web.Business\obj\Debug\Web.Business.pdb
+D:\Abid\Web.UI\Web.Business\obj\Debug\Web.Business.csprojAssemblyReference.cache

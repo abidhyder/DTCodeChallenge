@@ -1,0 +1,77 @@
+﻿@using Web.Business.Model
+@{
+    ViewBag.Title = "Upload Page";
+}
+@model FileUploadModel
+    <style>
+        /*.navbar-default {
+            background-color: 'gray';
+        }*/
+        /*input[type="file"]{
+            display:inline
+        }*/
+        .black-border {
+            border: 1px solid black;
+        }
+        .text-center{
+            text-align:center;
+        }
+    </style>
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+
+<div class="well" style="background-color:azure">
+    <div class="row">
+        <div class="col-md-12" style="padding:0px;border:0px solid blue">
+            @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <div class="col-md-4" style="padding:0px;width:auto;height:auto">
+                <label for="postedFile">Select File to Upload</label>
+                <input class="form-control-file btn-default" style="vertical-align:middle;" type="file" name="postedFile" />
+            </div>
+            <div class="col-md-8" style="border: 0px solid red; height:auto;position:relative;top:15px" vertical-align:bottom">
+                <input class="btn btn-primary"  type="submit" value="Import" />
+            </div>
+            }
+
+        </div>
+
+        @if (Model.DealerList!=null && Model.DealerList.Any())
+        {
+            <hr /> <hr /> 
+            <div class="panel col-md-12" style="background-color:azure">
+
+                <table cellpadding="0" cellspacing="0">
+                    <tr style="border:1px solid black">
+                        <th class="black-border text-center" style="width:10%">DealNumber</th>
+                        <th class="black-border text-center">CustomerName</th>
+                        <th class="black-border text-center">DealershipName</th>
+                        <th class="black-border text-center">Vehicle</th>
+                        <th class="black-border text-center" style="width:14%;">Price</th>
+                        <th class="black-border text-center" style="width:9%;">Date</th>
+                    </tr>
+                    @foreach (var dealer in Model.DealerList )
+                    {
+                    <tr style="border:1px solid black">
+                        <td class="black-border text-center">@dealer.DealNumber</td>
+                        <td class="black-border">@dealer.CustomerName</td>
+                        <td class="black-border">@dealer.DealershipName</td>
+                        <td class="black-border">@dealer.Vehicle</td>
+                        <td class="black-border text-center">@dealer.Price</td>
+                        <td class="black-border text-center">@dealer.Date</td>
+                    </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="col-md-8">
+                <label>The most sold vehicle is : @Model.MostSoldVehicle</label>
+            </div>
+        }
+
+    </div>
+</div>
