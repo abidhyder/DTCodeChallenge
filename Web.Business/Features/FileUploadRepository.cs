@@ -12,9 +12,6 @@ namespace Web.Business.Features
         public FileUploadModel UploadFile(HttpPostedFileBase postedFile)
         {
             var fileUploadModel = new FileUploadModel();
-            //var fileName = files[0].FileName;
-            //var contentlength = files[0].ContentLength;
-            //var postedFile = files[0];
             if (postedFile.ContentLength > 0)
             {
                 var dealerList = ProcessCSVFile(postedFile);
@@ -38,7 +35,7 @@ namespace Web.Business.Features
         {
             var dealerList = new List<DealerModel>();
             //read data from input stream
-            var cnt = 0;
+            var count = 0;
             using (var parser = new TextFieldParser(postedFile.InputStream, System.Text.Encoding.Default))
             {
                 parser.TextFieldType = FieldType.Delimited;
@@ -47,7 +44,7 @@ namespace Web.Business.Features
                 while (!parser.EndOfData)
                 {
                     var fields = parser.ReadFields();
-                     if (cnt > 0)
+                     if (count > 0)
                     {
                         dealerList.Add(new DealerModel
                         {
@@ -60,7 +57,7 @@ namespace Web.Business.Features
                             Date = fields[5]
                         });
                     }
-                    cnt++;
+                    count++;
                 }
                 parser.Close();
 
@@ -68,44 +65,5 @@ namespace Web.Business.Features
             return dealerList;
         }
 
-        public List<DealerModel> UploadFile1(HttpPostedFileBase postedFile)
-        {
-            //get file
-            var dealerList = new List<DealerModel>();
-
-            //var postedFile = Request.Files[0];
-            //var postedFile = files[0];
-            if (postedFile.ContentLength > 0)
-            {
-                //read data from input stream
-                using (var csvReader = new System.IO.StreamReader(postedFile.InputStream))
-                {
-                    string inputLine = "";
-                    //read each line
-                    while ((inputLine = csvReader.ReadLine()) != null)
-                    {
-                        string text = inputLine;
-                        var csv = string.Join(",", text);
-                        //get lines values
-                        string[] values = inputLine.Split(new char[] { ',' });
-
-                        for (int x = 0; x < values.Length; x++)
-                        {
-                            //do something with each line and split value
-                            dealerList.Add(new DealerModel
-                            {
-                                DealershipName = values[0],
-                                DealNumber = values[1],
-                                CustomerName = values[2]
-
-                            });
-                        }
-                    }
-
-                    csvReader.Close();
-                }
-            }
-            return dealerList;
-        }
     }
 }

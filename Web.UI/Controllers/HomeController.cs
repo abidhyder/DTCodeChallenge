@@ -23,7 +23,6 @@ namespace Web.UI.Controllers
         public ActionResult UploadFile()
         {
             var fileModel = new FileUploadModel();
-            //open file
             if (Request.Files.Count == 1)
             {
                 var file = Request.Files[0];
